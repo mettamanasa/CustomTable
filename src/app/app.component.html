@@ -1,0 +1,50 @@
+<div>
+  <h3>Editable table</h3>
+  <div>
+    <table id="users">
+      <tr>
+        <th *ngFor = "let header of headers">
+          {{header}}
+        </th>
+      </tr>
+      <tr *ngFor="let person of personList; let id = index">
+        <td>
+          <span (keyup)="changeValue(id, 'firstName', $event)" (blur)="updateList(id, 'firstName', $event)"
+            contenteditable="true">{{person.firstName}}</span>
+        </td>
+        <td>
+          <span contenteditable="true" (keyup)="changeValue(id, 'lastName', $event)"
+            (blur)="updateList(id, 'lastName', $event)">{{person.lastName}}</span>
+        </td>
+        <td>
+          <span contenteditable="true" (keyup)="changeValue(id, 'phoneNumber', $event)"
+            (blur)="updateList(id, 'phoneNumber', $event)">{{person.phoneNumber}}</span>
+        </td>
+        <td>
+          <span contenteditable="true" (keyup)="changeValue(id, 'emailId', $event)"
+            (blur)="updateList(id, 'emailId', $event)">{{person.emailId}}</span>
+        </td>
+        <td>
+          <button type="button" (click)="remove(id)">Remove</button>
+        </td>
+      </tr>
+      <tr>
+        <button type="button" (click)="add()">Add</button>
+        <button type="button" (click)="submitJson()">Submit</button>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="submitted">
+    <h3>JSON Content</h3>
+    <ul *ngFor="let item of personList; let id = index">
+        <li>{{item.firstName}} {{item.lastName}}</li>
+        <ul>
+            <li> First Name: {{item.firstName}}</li>
+            <li> Last Name: {{item.lastName}}</li>
+            <li> Email: {{item.phoneNumber}}</li>
+            <li> Phone: {{item.emailId}}</li>
+        </ul>
+    </ul>
+</div>
+</div>
+
